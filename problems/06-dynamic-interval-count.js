@@ -25,8 +25,32 @@ console.log(timeoutObject); // Timeout { ... }
 ***********************************************************************/
 
 function dynamicIntervalCount(cb, delay, amount) {
-  // Your code here
-}
+  
+  let count = 0;
+      
+    function counter(){
+          // clear the callback after the amount has been completed
+          if (count==amount){
+            return clearInterval(intervalID);
+          } else {
+            count = count+1;
+            cb();
+            return counter();
+          }
+      }
+
+      // if an amount has been passed
+      if (amount!==undefined){
+        const intervalID = setInterval(counter, delay);
+      }
+
+      // if ampunt wasn't set then it will run the code with direct callback and not clear the interval
+      const intervalID = setInterval(cb, delay);
+      return intervalID;
+
+  }
+
+
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
