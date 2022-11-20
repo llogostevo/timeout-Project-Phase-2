@@ -26,10 +26,7 @@ function postponeWithArgs(cb, delay) {
   // Your code here
   return (...args) =>{
     
-    let callback = () =>{
-      return cb(...args);
-    }
-    
+    let callback = () => cb(...args);
     setTimeout(callback, delay);
   }
 }
