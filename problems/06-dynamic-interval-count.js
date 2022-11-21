@@ -54,7 +54,7 @@ console.log(timeoutObject); // Timeout { ... }
 
   function dynamicIntervalCount(cb, delay, amount) {
   
-      const intervalObj = setInterval( function() {
+      const intervalObj = setInterval( () => {
               // clear the callback after the amount has been completed
               cb();
               amount--;
