@@ -25,14 +25,10 @@ slowPrintSum(2, 8); // prints '10' after 500 ms
 function postponeWithArgs(cb, delay) {
   
   return (...args) =>{
-    setTimeout(cb,delay, ...args )
+    setTimeout(cb, delay, ...args)
   }
 }
 
-const greet = (person) => console.log('Hello ' + person + '!');
-const slowGreet = postponeWithArgs(greet, 1000);
-slowGreet('Rose'); // prints 'Hello Rose!' after 1000 ms
-slowGreet('Alex'); // prints 'Hello Alex!' after 1000 ms
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
   module.exports = postponeWithArgs;

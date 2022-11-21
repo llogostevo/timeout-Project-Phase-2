@@ -23,34 +23,48 @@ const timeoutObject = dynamicIntervalCount(function() {
 
 console.log(timeoutObject); // Timeout { ... }
 ***********************************************************************/
-
-function dynamicIntervalCount(cb, delay, amount) {
+// original version
+// function dynamicIntervalCount(cb, delay, amount) {
   
-  let count = 0;
+//   let count = 0;
       
-    function counter(){
-          // clear the callback after the amount has been completed
-          if (count==amount){
-            return clearInterval(intervalID);
-          } else {
-            count = count+1;
-            cb();
-            return counter();
-          }
-      }
+//     function counter(){
+//           // clear the callback after the amount has been completed
+//           if (count==amount){
+//             return clearInterval(intervalID);
+//           } else {
+//             count = count+1;
+//             cb();
+//             return counter();
+//           }
+//       }
 
-      // if an amount has been passed
-      if (amount!==undefined){
-        const intervalID = setInterval(counter, delay);
-      }
+//       // if an amount has been passed
+//       if (amount!==undefined){
+//         const intervalID = setInterval(counter, delay);
+//       }
 
-      // if ampunt wasn't set then it will run the code with direct callback and not clear the interval
-      const intervalID = setInterval(cb, delay);
-      return intervalID;
+//       // if ampunt wasn't set then it will run the code with direct callback and not clear the interval
+//       const intervalID = setInterval(cb, delay);
+//       return intervalID;
 
-  }
+//   }
 
 
+
+  function dynamicIntervalCount(cb, delay, amount) {
+  
+      const intervalObj = setInterval( function() {
+              // clear the callback after the amount has been completed
+              cb();
+              amount--;
+              if (amount===0){
+                clearInterval(intervalObj);
+              } 
+          }, delay);
+          return intervalObj;
+          
+    }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
